@@ -39,7 +39,6 @@ def identificar_planta(imagem, orgao):
             'genero': genero,
             'nomes_populares': nomes_populares,
             'confianca': confianca,
-            'restantes': restantes,
         }
 
     except (KeyError, IndexError):

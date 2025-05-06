@@ -21,7 +21,7 @@
                 <option value="flower">Flor</option>
                 <option value="fruit">Fruto</option>
                 <option value="bark">Casca</option>
-                <option value="habit">Hábito</option>
+                <option value="habit">Hábitati</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary w-100">Identificar</button>
@@ -42,7 +42,6 @@
       <p><strong>Gênero:</strong> {{ resultado.genero }}</p>
       <p><strong>Confiança:</strong> {{ resultado.confianca }}%</p>
       <p><strong>Nomes populares:</strong> {{ resultado.nomes_populares|join:", " }}</p>
-      <p><strong>Requisições restantes:</strong> {{ resultado.restantes }}</p>
     {% endif %}
   </div>
 </div>
