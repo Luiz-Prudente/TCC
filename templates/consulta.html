@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Anexe a cultura que deseja consultar!</h1>
+    <p class="lead">Utilizamos a API da Pl@ntNet para trazer os melhores resultados para você.</p>
+    <hr class="my-4">
+    <p>Tudo que você precisa saber em um só lugar.</p>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="imagem" class="form-label">Imagem da planta</label>
+            <input type="file" class="form-control" name="imagem" id="imagem" required>
+        </div>
+        <div class="mb-3">
+            <label for="orgao" class="form-label">Tipo de órgão</label>
+            <select class="form-select" name="orgao" id="orgao" required>
+                <option value="leaf">Folha</option>
+                <option value="flower">Flor</option>
+                <option value="fruit">Fruto</option>
+                <option value="bark">Casca</option>
+                <option value="habit">Hábito</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Identificar</button>
+    </form>
+</div>
+
+{% if resultado %}
+<div class="card mt-4">
+  <div class="card-header">
+    Resultado da Identificação
+  </div>
+  <div class="card-body">
+    {% if resultado.erro %}
+      <div class="alert alert-danger">{{ resultado.erro }}</div>
+    {% else %}
+      <p><strong>Nome científico:</strong> {{ resultado.nome_cientifico }}</p>
+      <p><strong>Família:</strong> {{ resultado.familia }}</p>
+      <p><strong>Gênero:</strong> {{ resultado.genero }}</p>
+      <p><strong>Confiança:</strong> {{ resultado.confianca }}%</p>
+      <p><strong>Nomes populares:</strong> {{ resultado.nomes_populares|join:", " }}</p>
+      <p><strong>Requisições restantes:</strong> {{ resultado.restantes }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
